@@ -2,6 +2,7 @@
       <div class="container">
         <div class="flush">
           <div class="row">
+            <div class="col-md-12" style="background:#000;padding: 20px;color: #fff;">VOTA A LA MEJOR FOTO DE LA SEMANA <a href="<?php bloginfo('url') ?>/index.php/votaciones" class="buttom-gradient-red" style="padding-top:05px; padding-left:15px; padding-right:15px; padding-bottom:05px">Votar </a></div>
             <div class="col-md-4 masthead-plans">
               <a href="">
                 <div class="text">

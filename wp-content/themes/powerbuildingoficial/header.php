@@ -44,7 +44,7 @@
             <?php
           }else{
             ?>		
-		<li><a href="<?php bloginfo('url') ?>/index.php/ingresar_registrarse">Ingresar / Registrase</a></li>
+		<li><a href="<?php bloginfo('url') ?>/index.php/ingresar-registrarse">Ingresar / Registrase</a></li>
 		<?php } ?>
 		<li><a href="#">Buscar</a></li>
 		<li><a href="#">Carrito</a></li>

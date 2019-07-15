@@ -62,5 +62,4 @@ $(".som-password-sent-message span").html("Registro exitoso!")
   $(".submit_button").on('click' , function(){
     $(".status").css("display" , "block");
   });
-
-// Envío y registro 
+ 

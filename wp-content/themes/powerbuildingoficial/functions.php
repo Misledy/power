@@ -2,6 +2,7 @@
 
 function powerbuildingoficial_styles(){
     wp_enqueue_style('normalize', get_stylesheet_directory_uri() . '/css/normalize.css' );
+    wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/css/style.css' );
     wp_enqueue_style('bootstrap', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" );
     wp_enqueue_style( 'barlow', "https://fonts.googleapis.com/css?family=Barlow+Condensed:400,700|Barlow:400,500,700&display=swap" );
     wp_enqueue_style('style', get_stylesheet_uri() );
@@ -9,6 +10,7 @@ function powerbuildingoficial_styles(){
     wp_enqueue_script('jquery');
     wp_enqueue_script('bootstrapjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array('jquery'), '3.3.7', true );
     wp_enqueue_script( 'mainjs', get_template_directory_uri() . '/js/main.js', array(), '3.3.7', true );
+    wp_enqueue_script( 'ajax', get_template_directory_uri() . '/js/ajax-login-script.js' );
 }
 
 add_action('wp_enqueue_scripts', 'powerbuildingoficial_styles');
@@ -20,10 +22,9 @@ register_nav_menus(array(
   
   ) );
 
-
 // Register Custom Post Type
 
-/*****************BANNER*****************/
+/*********** BANNER ***********/
 function custom_post_type_banner() {
 
 	$labels = array(
@@ -58,8 +59,8 @@ function custom_post_type_banner() {
 		'label'                 => __( 'Banner', 'text_domain' ),
 		'description'           => __( 'Banner image', 'text_domain' ),
 		'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
-			'taxonomies'            => array( 'post_tag' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
+		'taxonomies'            => array( 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -79,7 +80,7 @@ function custom_post_type_banner() {
 }
 add_action( 'init', 'custom_post_type_banner', 0 );
 
-/*****************TESTIMONIALS*****************/
+/*********** TESTIMONIALS ***********/
 function custom_post_type_testimonials() {
 
 	$labels = array(
@@ -114,8 +115,8 @@ function custom_post_type_testimonials() {
 		'label'                 => __( 'Testimonials', 'text_domain' ),
 		'description'           => __( 'Testimonials image', 'text_domain' ),
 		'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
-			'taxonomies'            => array( 'post_tag' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
+		'taxonomies'            => array( 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -134,3 +135,136 @@ function custom_post_type_testimonials() {
 
 }
 add_action( 'init', 'custom_post_type_testimonials', 0 );
+
+
+
+// Register - login
+
+/*********** Bar ***********/
+
+add_action('after_setup_theme', 'remove_admin_bar');
+
+function remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+		show_admin_bar(false);
+	}
+}
+
+
+/*********** Register ***********/
+
+add_action('wp_ajax_register_user_front_end', 'register_user_front_end', 0);
+add_action('wp_ajax_nopriv_register_user_front_end', 'register_user_front_end');
+function register_user_front_end() {
+	$new_user_name = stripcslashes($_POST['new_user_name']);
+	$new_user_email = stripcslashes($_POST['new_user_email']);
+	$new_user_password = $_POST['new_user_password'];
+	$password_confirm = $_POST['re_pwd'];;
+	$user_nice_name = strtolower($_POST['new_user_email']);
+	$user_data = array(
+		'user_login' => $new_user_name,
+		'user_email' => $new_user_email,
+		'user_pass' => $new_user_password,
+		'user_nicename' => $user_nice_name,
+		'display_name' => $new_user_first_name,
+		'role' => 'customer'
+	);
+	require_once(ABSPATH . WPINC . '/registration.php');
+	if (username_exists($new_user_name)){
+		error_registro()->add('usuario_repetido' , __('El usuario ya existe'));
+	}
+
+	if ($new_user_name = ''){
+		error_registro()->add('usuario_vacio' , __('El usuario está vacio'));
+	}
+
+	if(!is_email($new_user_email)){
+		error_registro()->add('email_invalido' , __('El email es invalido'));
+	}
+
+	if(email_exists($new_user_email)){
+		error_registro()->add('email_existente' , __('El email ya existe'));
+	}
+
+	if($new_user_password != $password_confirm){
+		error_registro()->add('pass_mismatch' , __('La contraseña no coincide'));
+	}
+
+
+	$errors = error_registro()->get_error_messages();
+
+	if (empty($errors)){
+		$user_id = wp_insert_user($user_data);
+		wp_set_password($new_user_password , $user_id);
+		$code = sha1( $user_id . time() );    
+		global $wpdb;    
+		$wpdb->update( 
+			'stts_users',   
+			array( 'user_activation_key' => $code, ),       
+			array( 'ID' =>    $user_id ),     
+			array( '%s')
+		);
+		$activation_link = add_query_arg( array( 'key' => $code, 'user' => $user_id ), get_permalink(37));  
+		echo 'Registro exitoso!';
+	}else{
+		foreach ($errors as $error) {
+			echo $error;
+		}
+	}
+	die();
+}
+
+function error_registro(){
+		static $wp_error; // Will hold global variable safely
+		return isset($wp_error) ? $wp_error : ($wp_error = new WP_Error(null, null, null));
+	}
+
+
+/*********** Login ***********/
+
+function ajax_login_init(){
+
+	wp_register_script('ajax-login-script', get_template_directory_uri() . '/js/ajax-login-script.js', array('jquery') ); 
+	wp_enqueue_script('ajax-login-script');
+
+	wp_localize_script( 'ajax-login-script', 'ajax_login_object', array( 
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'redirecturl' => home_url(),
+		'loadingmessage' => __('Sending user info, please wait...')
+	));
+
+		// Enable the user with no privileges to run ajax_login() in AJAX
+	add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
+}
+
+// Execute the action only if the user isn't logged in
+if (!is_user_logged_in()) {
+	add_action('init', 'ajax_login_init');
+}
+
+
+function ajax_login(){
+	// First check the nonce, if it fails the function will break
+	check_ajax_referer( 'ajax-login-nonce', 'security' );
+
+		// Nonce is checked, get the POST data and sign user on
+	$info = array();
+	$info['user_login'] = $_POST['username'];
+	$info['user_password'] = $_POST['password'];
+	$info['remember'] = true;
+
+	$user_signon = wp_signon( $info, false );
+	if ( is_wp_error($user_signon) ){
+		echo json_encode(array('loggedin'=>false, 'message'=>__('Usuario o contraseña equivocada.')));
+	} else {
+		echo json_encode(array('loggedin'=>true, 'message'=>__('Logueo exitoso, redireccionando...')));
+	}
+	die();
+}
+
+function error_message($error){
+	$error_msg = '<div class="error_msg">';
+	$error_msg .= '<h1>' . $error . '</h1>' ;
+	$error_msg .= '</div>';
+	return $error_msg;
+}

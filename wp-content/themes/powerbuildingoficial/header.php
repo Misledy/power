@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device=width, initial-scale=1">
 <title></title>
 <?php wp_head(); ?>
+<? $user = get_current_user_id();?>
 </head>
 <body>
 
@@ -20,14 +21,31 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/"><img class="normalize-svg" src="<?php echo get_stylesheet_directory_uri() ?> /images/production/logo-powerbuilding-oficial.svg" alt="Go to Home Page"></a>
+				<a class="navbar-brand" href="<?php echo get_home_url() ?>"><img class="normalize-svg" src="<?php echo get_stylesheet_directory_uri() ?> /images/production/logo-powerbuilding-oficial.svg" alt="Go to Home Page"></a>
 			</div>
 	</div>
 	
 	<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 		
 		<ul class="nav navbar-nav navbar-right">
-		<li><a href="#">Ingresar / Registrase</a></li>
+          <?php 
+          if (is_user_logged_in()){
+            $usuario = wp_get_current_user();
+            ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Usuario: <?php echo $usuario -> user_login ?></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Panel de control</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="<?php echo wp_logout_url( home_url()); ?>">Cerrar sesión</a>
+            </li>                        
+            <?php
+          }else{
+            ?>		
+		<li><a href="<?php bloginfo('url') ?>/index.php/ingresar_registrarse">Ingresar / Registrase</a></li>
+		<?php } ?>
 		<li><a href="#">Buscar</a></li>
 		<li><a href="#">Carrito</a></li>
 		</ul>
@@ -54,7 +72,7 @@
 								<ul class="nav navbar-nav navbar-right main-nav">
 										 
         <li class="nav-item active">
-			<a class="nav-link" href="#hero">INICIO</a>
+			<a class="nav-link" href="<?php echo get_home_url() ?>">INICIO</a>
 			 </li>
 			 
         <li class="nav-item">

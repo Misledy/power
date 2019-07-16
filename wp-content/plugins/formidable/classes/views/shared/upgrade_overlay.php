@@ -1,40 +1,61 @@
 <div id="frm_upgrade_modal" class="frm_hidden settings-lite-cta">
 	<div class="metabox-holder">
 		<div class="postbox">
-			<a href="#" class="dismiss alignright" title="<?php esc_attr_e( 'Dismiss this message', 'formidable' ); ?>"><i class="dashicons dashicons-no-alt" aria-label="Dismiss" aria-hidden="true"></i></a>
+			<a href="#" class="dismiss alignright" title="<?php esc_attr_e( 'Dismiss this message', 'formidable' ); ?>">
+				<?php FrmAppHelper::icon_by_class( 'frmfont frm_close_icon', array( 'aria-label' => 'Dismiss' ) ); ?>
+			</a>
 			<div class="inside">
 
-				<i class="dashicons dashicons-lock"></i>
+				<?php FrmAppHelper::icon_by_class( 'frmfont frm_lock_icon frm_locked', array( 'aria-hidden' => 'true' ) ); ?>
 				<h2>
 					<?php
 					printf(
+						/* translators: %s: Feature name */
 						esc_html__( '%s are not installed', 'formidable' ),
 						'<span class="frm_feature_label"></span>'
 					);
 					?> 
 				</h2>
 				<div class="cta-inside">
-					<p>
+
+					<p id="frm-oneclick" class="frm_hidden">
+						<?php esc_html_e( 'That add-on is not installed. Would you like to install it now?', 'formidable' ); ?>
+					</p>
+					<p id="frm-addon-status"></p>
+
+					<a class="button button-primary frm-button-primary frm_hidden" id="frm-oneclick-button">
+						<?php esc_html_e( 'Install', 'formidable' ); ?>
+					</a>
+
+					<p id="frm-upgrade-message">
 						<?php
 						if ( $is_pro ) {
-							$message = __( 'Please see the add-ons that are included with your plan.', 'formidable' );
+							/* translators: %s: Feature name */
+							$message = __( '%s are not available on your plan. Please upgrade or renew your license to unlock more awesome features.', 'formidable' );
 						} else {
-							$message = __( '%s are not available on your plan. Please upgrade to PRO to unlock more awesome features.', 'formidable' );
+							/* translators: %s: Feature name */
+							$message = __( '%s are not available on your plan. Did you know you can upgrade to PRO to unlock more awesome features?', 'formidable' );
 						}
 						printf( esc_html( $message ), '<span class="frm_feature_label"></span>' );
 						?>
 					</p>
 					<?php if ( $is_pro ) { ?>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=formidable-addons' ) ); ?>" class="button button-primary">
-								<?php esc_html_e( 'See My Add-Ons', 'formidable' ); ?>
+						<a href="<?php echo esc_url( FrmAppHelper::admin_upgrade_link( $upgrade_link ) ); ?>" class="button button-primary frm-button-primary" id="frm-upgrade-modal-link">
+							<?php
+							printf(
+								/* translators: %s: Plan name */
+								esc_html__( 'Upgrade to %s', 'formidable' ),
+								'<span class="license-level">Pro</span>'
+							);
+							?>
 						</a>
 					<?php } else { ?>
-						<a href="<?php echo esc_url( FrmAppHelper::admin_upgrade_link( 'builder-upgrade' ) ); ?>" class="button button-primary" target="_blank" rel="noopener noreferrer">
+						<a href="<?php echo esc_url( FrmAppHelper::admin_upgrade_link( $upgrade_link ) ); ?>" class="button button-primary frm-button-primary" target="_blank" rel="noopener noreferrer" id="frm-upgrade-modal-link">
 							<?php esc_html_e( 'Upgrade to Pro', 'formidable' ); ?>
 						</a>
 
 						<p>
-							<a href="<?php echo esc_url( FrmAppHelper::make_affiliate_url( FrmAppHelper::admin_upgrade_link( 'builder-upgrade', 'knowledgebase/install-formidable-forms/' ) ) ); ?>" target="_blank" class="frm-link-secondary">
+							<a href="<?php echo esc_url( FrmAppHelper::make_affiliate_url( FrmAppHelper::admin_upgrade_link( $upgrade_link, 'knowledgebase/install-formidable-forms/' ) ) ); ?>" target="_blank" class="frm-link-secondary">
 								<?php esc_html_e( 'Already purchased?', 'formidable' ); ?>
 							</a>
 						</p>

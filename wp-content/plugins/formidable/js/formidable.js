@@ -9,7 +9,7 @@ function frmFrontFormJS(){
 	function maybeShowLabel(){
 		/*jshint validthis:true */
 		var $field = jQuery(this);
-		var $label = $field.closest('.frm_inside_container').find('label.frm_primary_label');
+		var $label = $field.closest('.frm_inside_container').find('.frm_primary_label');
 
 		if ( $field.val().length > 0 ) {
 			$label.addClass('frm_visible');
@@ -27,11 +27,19 @@ function frmFrontFormJS(){
 			fieldName = field.name;
 		}
 
+		if ( typeof fieldName === 'undefined' ) {
+			fieldName = '';
+		}
+
 		if ( fieldName === '' ) {
 			if ( field instanceof jQuery ) {
 				fieldName = field.data('name');
 			} else {
 				fieldName = field.getAttribute('data-name');
+			}
+
+			if ( typeof fieldName === 'undefined' ) {
+				fieldName = '';
 			}
 
 			if ( fieldName !== '' && fieldName ) {
@@ -567,18 +575,42 @@ function frmFrontFormJS(){
 	function addFieldError( $fieldCont, key, jsErrors ) {
 		if ( $fieldCont.length && $fieldCont.is(':visible') ) {
 			$fieldCont.addClass('frm_blank_field');
+			var input = $fieldCont.find( 'input, select, textarea' ),
+				id = 'frm_error_field_' + key,
+				describedBy = input.attr( 'aria-describedby' );
+
 			if ( typeof frmThemeOverride_frmPlaceError === 'function' ) {
 				frmThemeOverride_frmPlaceError( key, jsErrors );
 			} else {
-				$fieldCont.append( '<div class="frm_error">'+ jsErrors[key] +'</div>' );
+				$fieldCont.append( '<div class="frm_error" id="' + id + '">'+ jsErrors[key] +'</div>' );
+
+				if ( typeof describedBy === 'undefined' ) {
+					describedBy = id;
+				} else if ( describedBy.indexOf( id ) === -1 ) {
+					describedBy = describedBy + ' ' + id;
+				}
+				input.attr( 'aria-describedby', describedBy );
 			}
+			input.attr( 'aria-invalid', true );
+
 			jQuery(document).trigger('frmAddFieldError', [ $fieldCont, key, jsErrors ] );
 		}
 	}
 
 	function removeFieldError( $fieldCont ) {
+		var errorMessage = $fieldCont.find('.frm_error'),
+			errorId = errorMessage.attr('id'),
+			input = $fieldCont.find( 'input, select, textarea' ),
+			describedBy = input.attr( 'aria-describedby' );
+
 		$fieldCont.removeClass('frm_blank_field has-error');
-		$fieldCont.find('.frm_error').remove();
+		errorMessage.remove();
+		input.attr( 'aria-invalid', false );
+
+		if ( typeof describedBy !== 'undefined' ) {
+			describedBy = describedBy.replace( errorId, '' );
+			input.attr( 'aria-describedby', describedBy );
+		}
 	}
 
 	function removeAllErrors() {
@@ -595,13 +627,16 @@ function frmFrontFormJS(){
 	}
 
 	function showSubmitLoading( $object ) {
+		showLoadingIndicator( $object );
+		disableSubmitButton( $object );
+	}
+
+	function showLoadingIndicator( $object ) {
 		if ( !$object.hasClass('frm_loading_form') ) {
 			$object.addClass('frm_loading_form');
 
 			$object.trigger( 'frmStartFormLoading' );
 		}
-
-		disableSubmitButton( $object );
 	}
 
 	function removeSubmitLoading( $object, enable, processesRunning ) {
@@ -609,12 +644,13 @@ function frmFrontFormJS(){
 			return;
 		}
 
-		$object.removeClass('frm_loading_form');
+		var loadingForm = jQuery( '.frm_loading_form' );
+		loadingForm.removeClass('frm_loading_form');
 
-		$object.trigger( 'frmEndFormLoading' );
+		loadingForm.trigger( 'frmEndFormLoading' );
 
 		if ( enable === 'enable' ) {
-			enableSubmitButton( $object );
+			enableSubmitButton( loadingForm );
 		}
 	}
 
@@ -672,15 +708,26 @@ function frmFrontFormJS(){
 
 	function resendEmail(){
 		/*jshint validthis:true */
-		var $link = jQuery(this);
-		var entry_id = $link.data('eid');
-		var form_id = $link.data('fid');
-		$link.append('<span class="spinner" style="display:inline"></span>');
+		var $link = jQuery(this),
+			entry_id = this.getAttribute( 'data-eid' ),
+			form_id = this.getAttribute( 'data-fid' ),
+			label = $link.find( '.frm_link_label' );
+		if ( label.length < 1 ) {
+			label = $link;
+		}
+		label.append('<span class="frm-wait"></span>');
+
 		jQuery.ajax({
-			type:'POST',url:frm_js.ajax_url,
-			data:{action:'frm_entries_send_email', entry_id:entry_id, form_id:form_id, nonce:frm_js.nonce},
+			type:'POST',
+			url:frm_js.ajax_url,
+			data:{
+				action:'frm_entries_send_email',
+				entry_id:entry_id,
+				form_id:form_id,
+				nonce:frm_js.nonce
+			},
 			success:function(msg){
-				$link.replaceWith(msg);
+				label.html(msg);
 			}
 		});
 		return false;
@@ -821,14 +868,21 @@ function frmFrontFormJS(){
 		},
 
 		renderRecaptcha: function( captcha ) {
-			var size = captcha.getAttribute('data-size');
-			var params = {
-				'sitekey': captcha.getAttribute('data-sitekey'),
-				'size': size,
-				'theme': captcha.getAttribute('data-theme')
-			};
+			var size = captcha.getAttribute('data-size'),
+				rendered = captcha.getAttribute('data-rid') !== null,
+				params = {
+					'sitekey': captcha.getAttribute('data-sitekey'),
+					'size': size,
+					'theme': captcha.getAttribute('data-theme')
+				};
+
+			if ( rendered ) {
+				return;
+			}
+
 			if ( size === 'invisible' ) {
 				var formID = jQuery(captcha).closest('form').find('input[name="form_id"]').val();
+				jQuery(captcha).closest('.frm_form_field').hide();
 				params.callback = function(token) {
 					frmFrontForm.afterRecaptcha(token, formID);
 				};
@@ -877,7 +931,7 @@ function frmFrontFormJS(){
 			}
 
 			if ( invisibleRecaptcha.length ) {
-				showSubmitLoading( jQuery(object) );
+				showLoadingIndicator( jQuery(object) );
 				executeInvisibleRecaptcha( invisibleRecaptcha );
 			} else {
 

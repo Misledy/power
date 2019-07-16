@@ -1,7 +1,7 @@
-<section id="workmode">
+    <section id="workmode">
       <div
         class="workmode"
-        style="background-image: url(http://localhost:83/wp_site_powerbuilding/wp-content/themes/powerbuildingoficial/images/bk-workmode.png)"
+        style="background-image: url(<?php echo get_template_directory_uri();?>/images/bk-workmode.png)"
       >
         <div class="container">
           <div class="row">
@@ -14,21 +14,21 @@
                 <br />
                 <img
                   class="icon-work-mode"
-                  src="<?php echo get_stylesheet_directory_uri() ?>/images/services/icon-workmode-test.svg"
+                  src="<?php echo get_template_directory_uri();?>/images/services/icon-workmode-test.svg"
                   alt=""
                 />
                 <h5>Cuestionario para planificar tu entrenamiento y dieta.</h5>
                 <br />
                 <img
                   class="icon-work-mode"
-                  src="<?php echo get_stylesheet_directory_uri() ?>/images/services/icon-workmode-whatsapp.svg"
+                  src="<?php echo get_template_directory_uri();?>/images/services/icon-workmode-whatsapp.svg"
                   alt=""
                 />
                 <h5>Seguimiento diario por tu entrenador vía WhatsApp.</h5>
                 <br />
                 <img
                   class="icon-work-mode"
-                  src="<?php echo get_stylesheet_directory_uri() ?>/images/services/icon-workmode-skype.svg"
+                  src="<?php echo get_template_directory_uri();?>/images/services/icon-workmode-skype.svg"
                   alt=""
                 />
                 <h5>Reunión con tu entrenador vía Skype.</h5>
@@ -40,4 +40,4 @@
           </div>
         </div>
       </div>
-</section>
+    </section>

@@ -54,7 +54,7 @@ class FrmInstallerSkin extends WP_Upgrader_Skin {
 	 *
 	 * @since 3.04.02
 	 */
-	public function footer() {}
+	function footer() {}
 
 	/**
 	 * Instead of outputting HTML for errors, json_encode the errors and send them
@@ -62,14 +62,11 @@ class FrmInstallerSkin extends WP_Upgrader_Skin {
 	 *
 	 * @since 3.04.02
 	 *
-	 * @param string|object $errors The WP Error object of errors with the install process.
+	 * @param array $errors Array of errors with the install process.
 	 */
-	public function error( $errors ) {
+	function error( $errors ) {
 		if ( ! empty( $errors ) ) {
-			if ( ! is_string( $errors ) ) {
-				$errors = $errors->get_error_message();
-			}
-			echo json_encode( array( 'error' => $errors ) );
+			echo json_encode( array( 'error' => $errors->get_error_message() ) );
 			wp_die();
 		}
 	}
@@ -82,6 +79,6 @@ class FrmInstallerSkin extends WP_Upgrader_Skin {
 	 *
 	 * @param string $string The feedback string.
 	 */
-	public function feedback( $string ) {}
+	function feedback( $string ) {}
 
 }

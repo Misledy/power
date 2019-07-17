@@ -47,36 +47,54 @@
                     <h2>El mejor cambio de la semana</h2>
                     <h6 class="text-link">El post con más votos será publicado en nuestra cuenta de Instagram <a href="https://www.instagram.com/powerbuilding_oficial/" target="blank">@powerbuilding_oficial</a></h6> 
             </div> 
+<!-- eliminar --> 
+            <?php 
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
+              foreach($result_link as $r)
+              {
+                $link = $r->option_value;
+              }            
+              $link_file = $link."/wp-content/uploads/";
+              $argspublicacion = array( 'post_type' => 'testimonials',  'showposts' => 3,  );  
 
+              $publicacions = new WP_Query($argspublicacion);   
+              if ($publicacions->have_posts()) : while($publicacions->have_posts() ) : $publicacions-> the_post();   
+                   $post_thumbnail_id = get_post_thumbnail_id( $publicacions->id );  
+                   $url = wp_get_attachment_url( $post_thumbnail_id);
+             
+              // one
+
+              $id_p = get_the_ID();
+              global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = 'publicacion' and post_id = '$id_p'"); 
+              foreach($result_link as $r)
+              {
+                      $id = $r->meta_value;
+                      echo $id;
+              } 
+              // two   
+              $result_link2 = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = '_wp_attached_file' and post_id = '$id'"); 
+              foreach($result_link2 as $r)
+              {
+                      $url_file2 = $link_file.'/'.$r->meta_value;
+                      echo "<img src='$url_file2'>";
+              }
+              the_content();
+            ?>
+     
+            <?php
+          endwhile;
+        endif;
+        wp_reset_postdata();
+      ?>
+<!-- **************** -->
             <div class="btn-page-upload-post text-center">
                 <a href="<?php bloginfo('url') ?>/index.php/publicacion">AÑADIR PUBLICACIÓN +</a>
             </div>
 
             <div class="count-down text-center">
                 <p>Las votaciones finalizan en:</p>
-                <div class="counter text-center">
-
-                    <div class="days">
-                        <span id="days">5</span>
-                        <p>DIAS</p>
-                    </div>
-
-                    <div class="hours">
-                            <span id="hours">18</span>
-                            <p>HRS.</p>
-                    </div>
-
-                    <div class="minutes">
-                            <span id="minutes">40</span>
-                            <p>MIN.</p>
-                    </div>
-
-                    <div class="seconds">
-                            <span id="seconds">20</span>
-                            <p>SEC.</p>
-                    </div>
-
-                </div>
+                <?php echo do_shortcode("[activar_votar]"); ?>
 
             </div>
 
@@ -84,6 +102,38 @@
               <div class="row">
 
                 <!-- Post 1 -->
+            <?php 
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
+              foreach($result_link as $r)
+              {
+                $link = $r->option_value;
+              }            
+              $link_file = $link."/wp-content/uploads/";
+              $argspublicacion = array( 'post_type' => 'testimonials',  'showposts' => 3,  );  
+
+              $publicacions = new WP_Query($argspublicacion);   
+              if ($publicacions->have_posts()) : while($publicacions->have_posts() ) : $publicacions-> the_post();   
+                   $post_thumbnail_id = get_post_thumbnail_id( $publicacions->id );  
+                   $url = wp_get_attachment_url( $post_thumbnail_id);
+             
+              // one
+
+              $id_p = get_the_ID();
+              global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = 'publicacion' and post_id = '$id_p'"); 
+              foreach($result_link as $r)
+              {
+                      $id = $r->meta_value;
+                      echo $id;
+              } 
+              // two   
+              $result_link2 = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = '_wp_attached_file' and post_id = '$id'"); 
+              foreach($result_link2 as $r)
+              {
+                      $url_file2 = $link_file.'/'.$r->meta_value;
+              }
+              
+            ?>                              
                 <div class="col-md-6 col-sm-6 col-xs-12">
                    <article class="voting-post-item">
 
@@ -97,7 +147,7 @@
                      </header>
 
                      <div class="content-img-post-item">
-                       <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/images/testimonial-1.png" alt="">
+                       <img class="img-responsive" src="<?php echo $url_file2;?>" alt="">
                      </div>
 
                      <footer class="footer-post-item">
@@ -108,13 +158,18 @@
 
                      <div class="btn-vote">
                        <a href=""> <img style="margin-bottom: 5px;" src="<?php echo get_template_directory_uri();?>/images/icons/icon-like.svg" alt="" /> VOTAR</a>
+                       <?php the_content();?>
                      </div>
 
                     </footer>
                      
                    </article>
                </div>
-
+            <?php
+          endwhile;
+        endif;
+        wp_reset_postdata();
+      ?>
                 <!-- Post 2 -->
                <div class="col-md-6 col-sm-6 col-xs-12">
                   <article class="voting-post-item">

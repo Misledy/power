@@ -27,7 +27,7 @@ class FrmFieldEmail extends FrmFieldType {
 	}
 
 	/**
-	 * Validate the email format
+	 * validate the email format
 	 *
 	 * @param array $args
 	 *
@@ -38,14 +38,6 @@ class FrmFieldEmail extends FrmFieldType {
 		if ( $args['value'] != '' && ! is_email( $args['value'] ) ) {
 			$errors[ 'field' . $args['id'] ] = FrmFieldsHelper::get_error_msg( $this->field, 'invalid' );
 		}
-
 		return $errors;
-	}
-
-	/**
-	 * @since 4.0.04
-	 */
-	public function sanitize_value( &$value ) {
-		FrmAppHelper::sanitize_value( 'sanitize_email', $value );
 	}
 }

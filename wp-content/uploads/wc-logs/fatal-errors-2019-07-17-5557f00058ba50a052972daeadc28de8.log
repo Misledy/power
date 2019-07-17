@@ -1,0 +1,4 @@
+2019-07-17T15:37:27+00:00 CRITICAL Call to undefined function excerpt() in C:\xampp\htdocs\wp_site_powerbuilding\wp-content\themes\powerbuildingoficial\page-votaciones.php on line 61
+
+2019-07-17T18:31:42+00:00 CRITICAL Call to undefined function get_id() in C:\xampp\htdocs\wp_site_powerbuilding\wp-content\themes\powerbuildingoficial\page-votaciones.php on line 69
+

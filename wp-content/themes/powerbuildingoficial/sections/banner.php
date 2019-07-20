@@ -2,7 +2,7 @@
 
 <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
     
-    <!-- Carousel items -->
+   
     <div class="carousel-inner">
 
     <?php 
@@ -38,4 +38,4 @@
 
 </div>
 
-</section>
+</section> 

@@ -47,7 +47,6 @@
                     <form action="#" method="POST" name="register-form" class="register_form">
                       <h2 style="margin-bottom:20px">!Sube tus archivos!</h2>
                        <?php echo do_shortcode('[formidable id=10]');  ?>
-                      <input type="submit"  class="custom-coach buttom-gradient-red" id="register-button" value="Adjuntar Archivo" >
                     </form>
                 </div>
               </div>        

@@ -14,6 +14,7 @@ body{
   padding-right: 25px
 }
 
+
 h1{
   color: #ffffff;
   font-weight: 700;
@@ -173,7 +174,7 @@ color: #ffffff;
 }
 
 .nav-item a:hover{
-  color: #C2222E!important;
+  color: #A8A8A8!important;
 }
 
 
@@ -204,6 +205,18 @@ color: #ffffff;
     font-weight: 700
 }
 
+.menu-util ul>li>a{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.menu-login{
+  background-color: #232323;
+}
+.menu-login img{
+  margin-left: 10px;
+}
+
 /*/CAROUSEL/*/
 #hero .bk1{
 	height: 100vh;
@@ -215,6 +228,20 @@ color: #ffffff;
     overflow: hidden!important;
     padding-top: 100px;
     outline: 0!important;
+}
+
+#carousel .carousel-caption {
+  background: url(../images/hero-texture.png);
+  background-repeat: repeat;
+  content: " ";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+  padding-top: 325px;
 }
 
 
@@ -249,12 +276,6 @@ color: #ffffff;
 	background: #C2222E;
 }
 
-#hero .carousel-caption {
-    right: 20%;
-    left: 20%;
-    top: 40%;
-    padding-bottom: 30px;
-}
 
 p.text-hashtag-white{
   font-family: "Barlow Condensed",sans-serif;
@@ -612,7 +633,7 @@ a.buttom-gradient-red2:hover .wobble-horizontal, a.buttom-gradient-red2:focus .w
   font-family: "Barlow",sans-serif;
   color: #C2222E;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 700!important;
 }
 
 .btn-start button{
@@ -625,7 +646,7 @@ a.buttom-gradient-red2:hover .wobble-horizontal, a.buttom-gradient-red2:focus .w
   font-size: 16px;
 }
 .btn-start{
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 
@@ -1212,7 +1233,7 @@ a.insta-testimonial-item:hover .insta-poster-description{
 }
 
 .footer ul li a:hover{
-  color: #C2222E;
+  color: #A8A8A8;
 }
 
 .footer h4{
@@ -1224,6 +1245,12 @@ a.insta-testimonial-item:hover .insta-poster-description{
   background: #4D4D4D;
   padding: 10px 30px;
   border-radius: 25px;
+}
+
+                     /*/ESTILOS COMPARTIDOS TODAS LAS PAGINA/*/
+
+.title-page h3{
+  color: #232323;
 }
 
                           /*/PAGINA VOTACIONES/*/
@@ -1242,8 +1269,22 @@ a.insta-testimonial-item:hover .insta-poster-description{
     outline: 0!important;
 }
 
-.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{
+.carousel-control-voting .glyphicon-chevron-left,.carousel-control-voting .glyphicon-chevron-right{
     top: 60%;
+}
+
+#carousel-voting .carousel-caption {
+  background: url(../images/hero-texture.png);
+  background-repeat: repeat;
+  content: " ";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+  padding-top: 200px;
 }
 
 /*/SECTION VOTING/*/
@@ -1368,3 +1409,767 @@ a.insta-testimonial-item:hover .insta-poster-description{
   justify-content: space-between;
 }
 
+
+
+
+                          /*/PAGINA ENTRENADORES BASICOS/*/
+
+#trainers-content{
+  margin-top: 200px;
+}
+
+#trainers-content .no-padding{
+  margin-bottom: -5px;
+}
+
+.trainer-item-page{
+  height: auto;
+}
+.trainer-item-page a{
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  background: #000000;
+}
+
+.name-trainer-item-page{
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  margin: 0px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.trainer-item-page a img{
+  transition: 0.3s all;
+}
+
+.trainer-item-page a:hover img{
+  opacity: 0.4;
+  transition: 0.3s all;
+}
+
+.content-todos,.content-hombre,.content-mujer{
+  padding: 15px;
+  margin-top: 30px;
+}
+.grid-filter-content{
+  margin-top: -40px;
+}
+
+.nav-tabs>li>a{
+  font-size: 16px;
+  color: #232323;
+  font-family: 'Barlow', sans-serif;
+}
+
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: #C2222E;
+  cursor: default;
+  background-color: transparent;
+  border: 0px;
+  border-bottom-color: transparent;
+  font-weight: 500;
+}
+
+.nav-tabs {
+  border-bottom: 0px;
+}
+
+.nav-tabs>li>a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 0px;
+  border-radius: 4px 4px 0 0;
+}
+
+.nav-tabs>li>a:hover {
+  background-color: transparent;
+  color: #C2222E;
+}
+
+
+#trainers-content .navbar-form {
+  margin: 0px;
+  padding: 0px;
+}
+
+#trainers-content .form-control {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: transparent;
+  background-image: none;
+  border: 0px;
+  box-shadow: none;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+#trainers-content .navbar-form .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  width: 100%;
+}
+
+#trainers-content .search-trainer{
+  border: solid 1px #232323;
+  margin-right: 5px;
+  border-radius: 33px;
+  display: flex;
+  width: 100%;
+}
+
+.search-trainer .btn-default {
+  background-color: transparent;
+  border: 0px;
+}
+
+
+
+
+                          /*/PAGINA PERFIL ENTRENADOR/*/
+ 
+
+/*/BANNER HERO/*/
+#profile-trainer{
+  margin-top: 125px;
+}
+
+.hero-profile-trainer {
+  background-color: #272727;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-profile-trainer:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#d1000000', GradientType=0);
+}
+
+.profile-top-wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 300px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  z-index: 10;
+}
+
+.profile-top {
+  color: #fff;
+  margin: 40px 0 50px;
+}
+
+.profile-top h1{
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.profile-top p{
+ color: #ffffff;
+}
+
+.profile-location .glyphicon,.profile-description .glyphicon {
+  font-size: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.profile-location,.profile-description {
+  font-size: 16px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+
+}
+
+
+
+/*/SUBNAV/*/
+
+#profile-trainer .profile-content-section,.subnav-profile,.profile-top{
+  padding-left: 40px
+}
+
+#profile-trainer .subnav{
+  border-bottom: solid 1px #C2C2C2;
+}
+#profile-trainer .subnav-profile li a{
+  font-size: 14px;
+  font-family: 'Barlow', sans-serif;
+  color: #232323;
+  font-weight: 500;
+  border-radius: 0px;
+}
+
+#profile-trainer .subnav .nav>li>a{
+  padding: 20px 15px 15px 15px;
+}
+
+#profile-trainer .subnav .nav>li>a:hover{
+  border-bottom: solid 3px #232323;
+  background: transparent;
+}
+
+#profile-trainer .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color:#232323;
+  background-color: transparent;
+  font-weight: 700;
+  border-bottom: solid 3px #232323;
+}
+
+
+
+/*/DETALLES PERFIL/*/
+
+.profile-pict-wrapper{
+  margin-top: -292px;
+}
+
+.booking-info,.profile-overview,.social-profile{
+  margin-top: 60px;
+}
+
+.btn-biography{
+  background-color: #C2C2C2;
+  font-size: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #232323;
+  font-weight: 700;
+  border-radius: 33px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-send-message-email{
+  background-color: transparent;
+  font-size: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #232323;
+  font-weight: 700;
+  border: solid 1px #C2C2C2;
+  border-radius: 33px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.profile-overview{
+  border: solid 1px #C2C2C2;
+}
+.profile-overview h4{
+  color: #232323;
+}
+.pb-label{
+  font-size: 14px;
+  font-family: 'Barlow', sans-serif;
+  color: #A8A8A8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item-block-overview{
+  margin: 15px 0;
+}
+.profile-overview .item-block-overview:first-child {
+  border-right: 1px solid #C2C2C2;
+}
+.basic-block{
+  margin: 0px;
+  border-bottom: 1px solid #C2C2C2;
+}
+
+.basic-block:last-child {
+  border: none;
+}
+.btn-link-social{
+  background-color: transparent;
+  font-size: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #232323;
+  font-weight: 700;
+  border: solid 1px #C2C2C2;
+  border-radius: 33px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+
+
+/*/SHOP CONTENT/*/
+
+.profile-content-title{
+  color: #232323;
+}
+.profile-content-section{
+  margin-top: 60px;
+}
+.shop-content{
+  margin-top: 50px;
+}
+
+.shop-content a{
+  text-decoration: none;
+}
+
+
+
+
+.item-shop-category-squirrel-asesorias{
+  background-color: #ffffff;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
+  -o-transition: box-shadow .1s ease-out;
+  transition: box-shadow .1s ease-out;
+  margin-bottom: 30px;
+}
+.item-shop-category-squirrel-asesorias:hover{
+  -webkit-box-shadow: 0px 2px 5px 3px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 2px 5px 3px rgba(0,0,0,0.2);
+box-shadow: 0px 2px 5px 3px rgba(0,0,0,0.2);
+}
+.info-item-shop{
+  padding: 15px;
+}
+.info-item-shop .title-item-shop{
+  font-family: 'Barlow', sans-serif;
+  color: #232323;
+  font-weight: 700;
+  font-size: 16px;
+}
+.no-bold{
+  font-weight: 500!important;
+}
+.view-details{
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #232323;
+  font-size: 18px;
+  text-decoration: underline;
+  
+}
+.price-item-shop{
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #232323;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn-add-to-bag{
+background: -moz-linear-gradient(left, rgba(238,64,55,1) 0%, rgba(194,34,46,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(238,64,55,1)), color-stop(100%, rgba(194,34,46,1)));
+background: -webkit-linear-gradient(left, rgba(238,64,55,1) 0%, rgba(194,34,46,1) 100%);
+background: -o-linear-gradient(left, rgba(238,64,55,1) 0%, rgba(194,34,46,1) 100%);
+background: -ms-linear-gradient(left, rgba(238,64,55,1) 0%, rgba(194,34,46,1) 100%);
+background: linear-gradient(to right, rgba(238,64,55,1) 0%, rgba(194,34,46,1) 100%);
+border-radius: 33px;
+color: #ffffff;
+border: 0px;
+padding: 10px 20px;
+font-family: "Barlow Condensed", sans-serif;
+font-weight: 700;
+cursor: pointer;
+text-decoration: none;
+font-size: 16px;
+display: flex;
+width: 100%;
+justify-content: center;
+margin-bottom: 10px;
+margin-top: 20px;
+}
+
+.btn-add-to-bag:hover{
+background: -moz-linear-gradient(left, rgba(194,34,46,1) 0%, rgba(238,64,55,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(194,34,46,1)), color-stop(100%, rgba(238,64,55,1)));
+background: -webkit-linear-gradient(left, rgba(194,34,46,1) 0%, rgba(238,64,55,1) 100%);
+background: -o-linear-gradient(left, rgba(194,34,46,1) 0%, rgba(238,64,55,1) 100%);
+background: -ms-linear-gradient(left, rgba(194,34,46,1) 0%, rgba(238,64,55,1) 100%);
+background: linear-gradient(to right, rgba(194,34,46,1) 0%, rgba(238,64,55,1) 100%);
+}
+
+
+
+
+.reviews-content-profile{
+  padding-left: 40px;
+}
+
+
+                          /*/PAGINA USUARIO PERFIL/*/
+
+
+.data-user-profile{
+  padding-top: 20px;
+}                          
+.hero-user-profile {
+  margin-top: 130px;
+  background-color: #D6D6D6;
+  padding: 50px 0px;
+}
+
+.hero-user-profile h1{
+  color: #232323;
+  font-size: 30px;
+}
+
+.btn-link-votaciones {
+  background-color: transparent;
+  font-size: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #232323;
+  font-weight: 700;
+  border: solid 1px #232323;
+  border-radius: 33px;
+  padding: 10px 30px;;
+}
+
+a.btn-link-votaciones:hover{
+  border: solid 1px #232323;
+}
+
+/*/SUBNAV/*/
+
+#user-profile .subnav-profile{
+  padding-left: 0px;
+}
+
+#user-profile .subnav{
+  border-bottom: solid 1px #C2C2C2;
+}
+#user-profile .subnav-profile li a{
+  font-size: 14px;
+  font-family: 'Barlow', sans-serif;
+  color: #232323;
+  font-weight: 500;
+  border-radius: 0px;
+}
+
+#user-profile .subnav .nav>li>a{
+  padding: 20px 15px 15px 15px;
+}
+
+#user-profile .subnav .nav>li>a:hover{
+  border-bottom: solid 3px #232323;
+  background: transparent;
+}
+
+#user-profile .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color:#232323;
+  background-color: transparent;
+  font-weight: 700;
+  border-bottom: solid 3px #232323;
+}
+
+/*/CONTENT USER PROFILE/*/
+
+.title-section-user-profile h4{
+  color: #232323;
+}
+
+.title-section-user-profile{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.data-info-trainer-category a{
+  color: #232323;
+}
+
+.bg-details-service-user{
+  background-color: #ffffff;
+  padding: 30px;
+}
+
+.bg-details-service-user h5{
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+  margin-top: 0px;
+}
+
+.progress-advice{
+  background-color: #ECBABE;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.progress-advice .progress-bar{
+  background: #C2222E;
+}
+
+
+
+
+/*/-----------------------------RESPONSIVE AJUSTES---------------------------/*/
+/*/-----------------------------RESPONSIVE AJUSTES---------------------------/*/
+/*/-----------------------------RESPONSIVE AJUSTES---------------------------/*/
+
+
+/*/-------------------------------------1200PX--------------------------------/*/
+
+@media (max-width: 1200px){
+
+ /*/PAGINA PERFIL ENTRENADOR/*/
+  .profile-pict-wrapper{
+    margin-top: -238px;
+  }
+
+/*/PAGINA PERFIL ENTRENADOR/*/
+  .profile-content-section,.subnav-profile,.profile-top{
+    padding-left: 0px
+  }
+
+  .profile-top {
+    color: #fff;
+    margin-bottom: 30px;
+  }
+
+  .reviews-content-profile {
+    padding-left: 0px;
+}
+
+}
+
+
+/*/-------------------------------------992PX MIN--------------------------------/*/
+
+@media (min-width: 992px) {
+
+/*/PAGINA ENTRENADORES BASICOS/*/
+
+  #trainers-content .col-md-5 {
+    float: left;
+    width: 20%;
+  }
+}
+
+.col-xs-5 {
+  float: left;
+  width: 20%;
+}
+
+/*/-------------------------------------992PX--------------------------------/*/
+
+@media (max-width: 991px){
+
+/*/PAGINA ENTRENADORES BASICOS/*/
+  .grid-filter-content{
+    margin-top: 20px;
+  }
+
+  #trainers-content ul.navbar-right{
+    float: none!important;
+  }
+
+  .search-trainer{
+    margin-top: 20px;
+  }
+
+/*/PAGINA PERFIL ENTRENADOR/*/
+
+.profile-pict-wrapper{
+    margin-top: -175px;
+  }
+
+}
+
+
+/*/-------------------------------------768PX--------------------------------/*/
+
+@media (max-width: 767px){
+
+  /*/HEADER/*/
+
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+  .navbar-fixed-top .navbar-nav {
+    margin: 0px;
+  }
+
+  .navbar-fixed-top .nav>li>a>img {
+    float: right;
+  }
+
+  .navbar-fixed-top .nav>li>a {
+    padding-right: 0px;
+}
+
+.navbar-fixed-top .header ul {
+  padding-right: 0px!important;
+}
+
+  .navbar-brand>img {
+    display: block;
+    width: 70%;
+    height: auto;
+  }
+
+  .navbar-brand{
+    padding-left: 0px;
+  }
+
+  .navbar-fixed-top .menu-util ul>li>a {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.navbar-fixed-top .navbar-collapse {
+  height: 100%;
+  max-height: 100%;
+}
+
+.navbar-fixed-top .main-nav{
+  padding-bottom: 470px;
+}
+
+
+
+/*/HEADER BOTTOM/*/
+
+.navbar-fixed-bottom{
+  border-top: 0px;
+  margin-bottom: -7px;
+  background-color: #4D4D4D;
+}
+
+.navbar-fixed-bottom .navbar-nav{
+  margin: 0px -15px;
+}
+
+.header ul {
+  padding-right: 0px;
+}
+
+.navbar-toggle{
+  float: none;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+.navbar-default .navbar-toggle {
+  border: 0px;
+  margin-top: 0px;
+}
+
+.menu-login {
+  background-color: transparent;
+}
+
+.menu-login img {
+  margin-left: 0px;
+}
+
+.menu-home{
+  padding-left: 15px;
+}
+
+.menu-search{
+  padding-right: 15px;
+}
+.navbar-toggle .icon-bar {
+  display: block;
+  border-radius: 0px;
+}
+
+
+/*/PAGINA ENTRENADORES BASICOS/*/
+
+  .search-trainer{
+    margin-top: 20px!important;
+    
+  }
+
+/*/PAGINA PERFIL ENTRENADOR/*/
+#profile-trainer {
+  margin-top: 60px;
+}
+
+.profile-top-wrapper{
+  min-height: 200px;
+}
+.subnav .subnav-profile {
+  text-align: center;
+}
+
+.profile-pict-wrapper{
+  margin-top: 40px;
+}
+.profile-pict-wrapper img{
+  margin: 0 auto;
+}
+
+.subnav .nav li {
+  display: inline-block;
+  float: none;
+}
+
+.booking-info,.profile-overview,.social-profile{
+  margin-top: 40px;
+}
+
+
+.content-profile .panel{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.content-profile .panel-default{
+  border: 0px;
+}
+
+.content-profile .panel-heading > h4 {
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.content-profile .panel-heading{
+  padding: 0px;
+  border:solid 1px #C2C2C2;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  border-radius: 0px;
+}
+
+/*/PAGINA USUARIO PERFIL/*/
+                       
+.hero-user-profile {
+margin-top: 65px;
+padding: 30px 0px;
+}
+.photo-user-profile img{
+  max-width: 100px;
+  margin: 0 auto;
+}
+.data-user-profile{
+  text-align: center;
+}                          
+
+}

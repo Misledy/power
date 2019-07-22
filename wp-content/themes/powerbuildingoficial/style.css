@@ -1176,16 +1176,15 @@ border-radius: 25px;
 }
 .btn-vote .wpulike{
   display: block !important;
+  padding: 0px;
 }
-button.wp_ulike_btn.wp_ulike_put_image.image-unlike.wp_likethis_109:before {
-    content: "VOTAR ";
-}
-.wpulike .wp_ulike_btn {
-    /* margin: 0; */
-    position: initial;
+.wpulike-default .wp_ulike_btn {
+    /* color: #616161; */
+    /* background: #e0e0e0; */
+    /* min-height: 30px; */
+    /* min-width: 50px; */
     font-size: 16px;
     border: 0px;
-    padding: 10px 40px;
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 700;
     cursor: pointer;
@@ -1194,5 +1193,55 @@ button.wp_ulike_btn.wp_ulike_put_image.image-unlike.wp_likethis_109:before {
     background: #D4D4D4;
     color: #272727;
     border-radius: 33px;
-    text-align: left;
-    }
+    float: right;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 90px;
+    padding-right: 70px;
+}
+
+.wpulike-default .wp_ulike_put_image:after {
+    content: 'VOTAR';
+    display: block;
+    background-size: contain;
+    width: 86px;
+    height: 16px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    float: right;
+}
+.wpulike-default .count-box:before {
+    content: 'votos';
+    position: absolute;
+    border: 0px solid transparent;
+    background: #fff;
+    border-bottom-color: #bdbdbd;
+   
+    top: 50%;
+    border-left-color: #bdbdbd;
+    transform: none;
+    width: 5px;
+    height: 5px;
+    margin: 0;
+}
+.wpulike-default .count-box {
+    position: relative;
+    border-radius: 0px;
+    font-size: 16px;
+    /* text-decoration: none; */
+    background-color: #fff;
+    margin-left: 8px;
+    line-height: 28px;
+    display: inline-block;
+    padding: 0 0px;
+    box-shadow: 0 0 0 0px #bdbdbd inset; 
+    color: #272727;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 700;
+}
+.footer-post-item{
+  display: flow-root;
+}

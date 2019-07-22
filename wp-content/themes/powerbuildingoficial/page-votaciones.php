@@ -66,7 +66,7 @@ global $wpdb;
                     <h6 class="text-link">El post con más votos será publicado en nuestra cuenta de Instagram <a href="https://www.instagram.com/powerbuilding_oficial/" target="blank">@powerbuilding_oficial</a></h6> 
             </div> 
             <?php
-                  if(is_user_logged_in() == NULL)
+                  if(is_user_logged_in() != NULL)
                   { ?>
                     <div class="btn-page-upload-post text-center">
                       <a href="<?php bloginfo('url') ?>/index.php/publicacion">AÑADIR PUBLICACIÓN +</a>
@@ -114,7 +114,7 @@ global $wpdb;
                 $link = $r->option_value;
               }            
               $link_file = $link."/wp-content/uploads/";
-              $argspublicacion = array( 'post_type' => 'publicacions',  'showposts' => 8,  );  
+              $argspublicacion = array( 'post_type' => 'publicacions',  'showposts' => 4,  );  
  
               $publicacions = new WP_Query($argspublicacion);   
               if ($publicacions->have_posts()) : while($publicacions->have_posts() ) : $publicacions-> the_post();   
@@ -146,7 +146,7 @@ global $wpdb;
                     <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/images/photo-profile.png" alt="" width="50" height="50">
                   </div>
                   <div class="name-profile">
-                    <p>Samuel Jara</p>
+                    <p><?php the_author(); ?></p>
                   </div>
                      </header>
 
@@ -155,32 +155,85 @@ global $wpdb;
                      </div>
 
                      <footer class="footer-post-item">
-
-                     <div class="number-votes">
-                        <p><span> 1263</span> votos</p> 
-                     </div>
-
-                     <div class="btn-vote">
-                       <a href=""> <img style="margin-bottom: 5px;" src="<?php echo get_template_directory_uri();?>/images/icons/icon-like.svg" alt="" /> VOTAR</a>
+                     <div class="btn-vote col-md-12">
                        <?php the_content();?>
                      </div>
 
                     </footer>
                      
                    </article>
-               </div>
-            <?php if ($count<='4') { ?>
-              <!-- PUBLICIDAD-->
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/images/publicidad-posts.jpg" alt="" style="margin-top: 30px;">
-              </div>              
-            <?php  } ?>  
+               </div>  
             <?php
           endwhile;
         endif;
         wp_reset_postdata();
       ?>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/images/publicidad-posts.jpg" alt="" style="margin-top: 30px;">
+              </div>
+                <!-- Post 2 -->
+            <?php 
+              $count=0;
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
+              foreach($result_link as $r)
+              {
+                $link = $r->option_value;
+              }            
+              $link_file = $link."/wp-content/uploads/";
+              $argspublicacion = array( 'post_type' => 'publicacions',  'showposts' => 4,  'offset' => 4);  
+ 
+              $publicacions = new WP_Query($argspublicacion);   
+              if ($publicacions->have_posts()) : while($publicacions->have_posts() ) : $publicacions-> the_post();   
+                   $post_thumbnail_id = get_post_thumbnail_id( $publicacions->id );  
+                   $url = wp_get_attachment_url( $post_thumbnail_id);
+                   $count=+1;
+              // one
 
+              $id_p = get_the_ID();
+              global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = 'publicacion' and post_id = '$id_p'"); 
+              foreach($result_link as $r)
+              {
+                      $id = $r->meta_value;
+              } 
+              // two   
+              $result_link2 = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = '_wp_attached_file' and post_id = '$id'"); 
+              foreach($result_link2 as $r)
+              {
+                      $url_file2 = $link_file.'/'.$r->meta_value;
+              }
+              
+            ?>                              
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                   <article class="voting-post-item">
+
+                     <header class="header-post-item">
+                  <div class="photo-profile">
+                    <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/images/photo-profile.png" alt="" width="50" height="50">
+                  </div>
+                  <div class="name-profile">
+                    <p><?php the_author(); ?></p>
+                  </div>
+                     </header>
+
+                     <div class="content-img-post-item">
+                       <img class="img-responsive" src="<?php echo $url_file2;?>" alt="">
+                     </div>
+
+                     <footer class="footer-post-item">
+                     <div class="btn-vote col-md-12">
+                       <?php the_content();?>
+                     </div>
+
+                    </footer>
+                     
+                   </article>
+               </div> 
+            <?php
+          endwhile;
+        endif;
+        wp_reset_postdata();
+      ?>
 
             </div>
 

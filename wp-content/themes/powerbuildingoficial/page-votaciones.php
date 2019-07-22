@@ -1,6 +1,5 @@
 <?php  get_header(); ?>
-
-  <?php
+<?php
 global $wpdb;  
  
     $result_activar_votacion = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'activar_activar_votacion'"); 
@@ -66,10 +65,14 @@ global $wpdb;
                     <h2>El mejor cambio de la semana</h2>
                     <h6 class="text-link">El post con más votos será publicado en nuestra cuenta de Instagram <a href="https://www.instagram.com/powerbuilding_oficial/" target="blank">@powerbuilding_oficial</a></h6> 
             </div> 
+            <?php
+                  if(is_user_logged_in() == NULL)
+                  { ?>
+                    <div class="btn-page-upload-post text-center">
+                      <a href="<?php bloginfo('url') ?>/index.php/publicacion">AÑADIR PUBLICACIÓN +</a>
+                    </div>
+            <?php }  ?>
 
-            <div class="btn-page-upload-post text-center">
-                <a href="<?php bloginfo('url') ?>/index.php/publicacion">AÑADIR PUBLICACIÓN +</a>
-            </div>
 
              <div class="count-down text-center">
                 <p>Las votaciones finalizan en:</p>

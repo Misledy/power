@@ -563,76 +563,6 @@ text-decoration: none;
 }
 
 
-/*/BECOME POWERBUILDING/*/
-
-
-#become-powerbuilder .advice-service,.programs-service{
-overflow: hidden;
-position: relative;
-}
-
-#become-powerbuilder img{
-position: absolute;
-top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-z-index: -3;
-width: 100%;
-transition: 0.5s all;
-}
-
-#become-powerbuilder a:hover .advice-service img{
-transform: scale(1.1);
-}
-#become-powerbuilder a:hover .programs-service img{
-transform: scale(1.1);
-}
-
-
-#become-powerbuilder a{
-text-decoration: none;
-color: #ffffff;
-}
-
-#become-powerbuilder .advice-service:hover{
-background-size: 110% 110%;
-transition: all 1s ease;
-}
-
-.advice-service p,.programs-service p{
-color: #ffffff;
-}
-
-.advice-service .text,.programs-service .text{
-margin: 120px 0px 110px 60px;
-}
-
-.text-hashtag{
-font-family: "Barlow",sans-serif;
-color: #C2222E;
-font-size: 14px;
-font-weight: 700;
-}
-
-.btn-start button{
-border: 0px;
-padding: 15px 40px;
-font-family: "Barlow Condensed", sans-serif;
-font-weight: 700;
-cursor: pointer;
-text-decoration: none;
-font-size: 16px;
-}
-.btn-start{
-margin-top: 60px;
-}
-
-
-.become-powerbuilder{
-margin-top: 40px;
-}
 
 /*/CUSTOMIZED SERVICE/*/
 
@@ -1240,3 +1170,29 @@ background: #4D4D4D;
 padding: 10px 30px;
 border-radius: 25px;
 }
+/* .wpulike */
+.wpulike{
+  display: none;
+}
+.btn-vote .wpulike{
+  display: block !important;
+}
+button.wp_ulike_btn.wp_ulike_put_image.image-unlike.wp_likethis_109:before {
+    content: "VOTAR ";
+}
+.wpulike .wp_ulike_btn {
+    /* margin: 0; */
+    position: initial;
+    font-size: 16px;
+    border: 0px;
+    padding: 10px 40px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: none!important;
+    background: #D4D4D4;
+    color: #272727;
+    border-radius: 33px;
+    text-align: left;
+    }

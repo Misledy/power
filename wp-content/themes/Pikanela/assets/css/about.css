@@ -1,0 +1,38 @@
+header {
+  padding-bottom: 4rem;
+}
+
+.banner-about {
+  background-image: url(../img/file3.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.banner-about h2 {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 5rem;
+}
+
+.title-about {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;}
+
+.description-pikanela {
+  color: #565656;
+  font-size: 1rem;
+  line-height: 25px;
+}
+.about-img {
+  width: 100%;
+}
+
+.post-description {
+  margin-left: 3rem;
+  border-left: 2px solid #7e7e7e;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+

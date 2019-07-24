@@ -1,4 +1,4 @@
-      <div class="clearfix"></div>
+ <?php  get_header(); ?>
 
       <div class="headerlinksbar">
         <div class="container">
@@ -105,7 +105,7 @@
 
         <div class="title-page text-left">
             <h3>Elije a tu Entrenador</h3>
-    </div> 
+        </div> 
 
             <div role="tabpanel">
               <div class="row grid-filter-content">
@@ -128,126 +128,28 @@
                     </form>
                   </div>
               </div>
-                    <div id="tabContent1" class="tab-content">
-
-                      
+                    <div id="tabContent1" class="tab-content">                     
                     
                      <div role="tabpanel" class="tab-pane fade in active" id="tab-todos">
                          <div class="row content-todos">
-
+                         <?php
+                           $argsBanner = array( 'post_type' => 'entrenador',  ); 
+                           $Banners = new WP_Query($argsBanner);   
+                           if ($Banners->have_posts()) : while($Banners->have_posts() ) : $Banners->the_post();  
+                               $post_thumbnail_id = get_post_thumbnail_id( $Banners->id );  
+                               $url = wp_get_attachment_url( $post_thumbnail_id);
+                         ?>                             
                              <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
                                 <div class="trainer-item-page">
                                      <a href="">
                                      
-                                         <img class="img-responsive" src="images/team/trainer-sanz.png" alt="">
-                                         <h4 class="name-trainer-item-page">Alberto Sanz</h4>
+                                         <img class="img-responsive" src="<?php echo $url ?>" alt="<?php the_title(); ?>">
+                                         <h4 class="name-trainer-item-page"><?php the_title(); ?></h4>
                                      
                                      </a>
                                 </div>
                              </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                    <div class="trainer-item-page">
-                                         <a href="">
-                                         
-                                             <img class="img-responsive" src="images/team/trainer-valenzuela.png" alt="">
-                                             <h4 class="name-trainer-item-page">Ángela Valenzuela</h4>
-                                         
-                                         </a>
-                                    </div>
-                             </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                    <div class="trainer-item-page">
-                                         <a href="">
-                                         
-                                             <img class="img-responsive" src="images/team/trainer-gonzalez.png" alt="">
-                                             <h4 class="name-trainer-item-page">Alberto González</h4>
-                                         
-                                         </a>
-                                    </div>
-                             </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                    <div class="trainer-item-page">
-                                         <a href="">
-                                         
-                                             <img class="img-responsive" src="images/team/trainer-squirrel.png" alt="">
-                                             <h4 class="name-trainer-item-page">Ariadna Squirrel</h4>
-                                         
-                                         </a>
-                                    </div>
-                             </div>
-
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-cristian.png" alt="">
-                                         <h4 class="name-trainer-item-page">Cristian Diaz</h4>
-                                     
-                                     </a>
-                                </div>
-                             </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                    <div class="trainer-item-page">
-                                         <a href="">
-                                         
-                                             <img class="img-responsive" src="images/team/trainer-castellon.png" alt="">
-                                             <h4 class="name-trainer-item-page">Andres Castellon</h4>
-                                         
-                                         </a>
-                                    </div>
-                             </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                    <div class="trainer-item-page">
-                                         <a href="">
-                                         
-                                             <img class="img-responsive" src="images/team/trainer-penev.png" alt="">
-                                             <h4 class="name-trainer-item-page">Robert Penev</h4>
-                                         
-                                         </a>
-                                    </div>
-                             </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-cuartero.png" alt="">
-                                         <h4 class="name-trainer-item-page">Alexandra Cuartero</h4>
-                                     
-                                     </a>
-                                </div>
-                             </div>
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                    <div class="trainer-item-page">
-                                         <a href="">
-                                         
-                                             <img class="img-responsive" src="images/team/trainer-camara.png" alt="">
-                                             <h4 class="name-trainer-item-page">Sergio Cámara</h4>
-                                         
-                                         </a>
-                                    </div>
-                             </div>
-
-
-                             <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-ciordia.png" alt="">
-                                         <h4 class="name-trainer-item-page">Kordian Szczybelski</h4>
-                                     
-                                     </a>
-                                </div>
-                             </div>
-
-                             
+                         <?php $i++; endwhile; endif; ?>                             
 
                          </div>
                      </div>
@@ -257,177 +159,58 @@
 
                       <div class="row content-hombre">
 
+                        <?php
+                        $argsBanner = array( 'post_type' => 'entrenador', 'category_name' => 'hombre',  ); 
+                        $Banners = new WP_Query($argsBanner);   
+                        if ($Banners->have_posts()) : while($Banners->have_posts() ) : $Banners->the_post();  
+                            $post_thumbnail_id = get_post_thumbnail_id( $Banners->id );  
+                            $url = wp_get_attachment_url( $post_thumbnail_id);
+                        ?>                             
+
                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
                             <div class="trainer-item-page">
                                  <a href="">
                                  
-                                     <img class="img-responsive" src="images/team/trainer-sanz.png" alt="">
-                                     <h4 class="name-trainer-item-page">Alberto Sanz</h4>
+                                     <img class="img-responsive" src="<?php echo $url ?>" alt="<?php the_title(); ?>">
+                                     <h4 class="name-trainer-item-page"><?php the_title(); ?></h4>
                                  
                                  </a>
                             </div>
-                         </div>
-
-                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-gonzalez.png" alt="">
-                                         <h4 class="name-trainer-item-page">Alberto González</h4>
-                                     
-                                     </a>
-                                </div>
-                         </div>
-
-                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                            <div class="trainer-item-page">
-                                 <a href="">
-                                 
-                                     <img class="img-responsive" src="images/team/trainer-cristian.png" alt="">
-                                     <h4 class="name-trainer-item-page">Cristian Diaz</h4>
-                                 
-                                 </a>
-                            </div>
-                         </div>
-
-                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-castellon.png" alt="">
-                                         <h4 class="name-trainer-item-page">Andres Castellon</h4>
-                                     
-                                     </a>
-                                </div>
-                         </div>
-
-                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-penev.png" alt="">
-                                         <h4 class="name-trainer-item-page">Robert Penev</h4>
-                                     
-                                     </a>
-                                </div>
-                         </div>
-
-                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                                <div class="trainer-item-page">
-                                     <a href="">
-                                     
-                                         <img class="img-responsive" src="images/team/trainer-camara.png" alt="">
-                                         <h4 class="name-trainer-item-page">Sergio Cámara</h4>
-                                     
-                                     </a>
-                                </div>
-                         </div>
-
-                         <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                            <div class="trainer-item-page">
-                                 <a href="">
-                                 
-                                     <img class="img-responsive" src="images/team/trainer-ciordia.png" alt="">
-                                     <h4 class="name-trainer-item-page">Kordian Szczybelski</h4>
-                                 
-                                 </a>
-                            </div>
-                         </div>
-
                         </div>
-
+                        <?php $i++; endwhile; endif; ?> 
+                        </div>
                      </div>
                     
                      <div role="tabpanel" class="tab-pane fade" id="tab-mujer">
 
                       <div class="row content-mujer">
-
+                        <?php
+                        $argsBanner = array( 'post_type' => 'entrenador', 'category_name' => 'mujer',  ); 
+                        $Banners = new WP_Query($argsBanner);   
+                        if ($Banners->have_posts()) : while($Banners->have_posts() ) : $Banners->the_post();  
+                            $post_thumbnail_id = get_post_thumbnail_id( $Banners->id );  
+                            $url = wp_get_attachment_url( $post_thumbnail_id);
+                        ?> 
                           <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
                               <div class="trainer-item-page">
                                    <a href="">
                                    
-                                       <img class="img-responsive" src="images/team/trainer-valenzuela.png" alt="">
-                                       <h4 class="name-trainer-item-page">Ángela Valenzuela</h4>
+                                       <img class="img-responsive" src="<?php echo $url ?>" alt="<?php the_title(); ?>">
+                                       <h4 class="name-trainer-item-page"><?php the_title(); ?></h4>
                                    
                                    </a>
                               </div>
                           </div>
-
-                          <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                              <div class="trainer-item-page">
-                                   <a href="">
-                                   
-                                       <img class="img-responsive" src="images/team/trainer-squirrel.png" alt="">
-                                       <h4 class="name-trainer-item-page">Ariadna Squirrel</h4>
-                                   
-                                   </a>
-                              </div>
-                          </div>
-
-                          <div class="col-md-5 col-sm-3 col-xs-4 no-padding">
-                              <div class="trainer-item-page">
-                                   <a href="">
-                                   
-                                       <img class="img-responsive" src="images/team/trainer-cuartero.png" alt="">
-                                       <h4 class="name-trainer-item-page">Alexandra Cuartero</h4>
-                                   
-                                   </a>
-                              </div>
-                           </div>
-
+                        <?php $i++; endwhile; endif; ?>
                       </div>
-
                      </div>
-                      
-                      
-                      
                     </div>
               </div>
 
     </div>
 
 </section>
+<!-- ***********************SECTION WORKMODE*************************** -->
+<?php  get_template_part('sections/workmode'); ?>
 
-<section id="workmode">
-    <div
-      class="workmode"
-      style="background-image: url(images/bk-workmode.png)"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-6">
-            <div class="title-section text-left">
-              <h2>
-                Tu transformación <br />
-                paso a paso
-              </h2>
-              <br />
-              <img
-                class="icon-work-mode"
-                src="images/services/icon-workmode-test.svg"
-                alt=""
-              />
-              <h5>Cuestionario para planificar tu entrenamiento y dieta.</h5>
-              <br />
-              <img
-                class="icon-work-mode"
-                src="images/services/icon-workmode-whatsapp.svg"
-                alt=""
-              />
-              <h5>Seguimiento diario por tu entrenador vía WhatsApp.</h5>
-              <br />
-              <img
-                class="icon-work-mode"
-                src="images/services/icon-workmode-skype.svg"
-                alt=""
-              />
-              <h5>Reunión con tu entrenador vía Skype.</h5>
-              <div class="btn-start">
-                <a href="#trainers-content" class="buttom-gradient-red">COMIENZA AHORA</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<?php  get_footer(); ?>

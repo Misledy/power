@@ -19,7 +19,7 @@
                         <div class="content-doll add-card">
                             <p class="mr-auto"><?php the_title(); ?></p>
                          <div class="price-firts">
-                         <p class="ml-auto"><?php echo $product->get_price_html(); ?></p>
+                         <p class="ml-auto"><?php echo $product->get_price_html(); ?></p>                        
                          </div>
                             <!-- <span>158 cm</span> -->
                         </div>

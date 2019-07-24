@@ -108,12 +108,7 @@ global $wpdb;
                 <!-- Post 1 -->
             <?php 
               $count=0;
-              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
-              foreach($result_link as $r)
-              {
-                $link = $r->option_value;
-              }            
-              $link_file = $link."/wp-content/uploads/";
+              $link_file = link_upload()."/wp-content/uploads/";
               $argspublicacion = array( 'post_type' => 'publicacions',  'showposts' => 4,  );  
  
               $publicacions = new WP_Query($argspublicacion);   
@@ -174,12 +169,6 @@ global $wpdb;
                 <!-- Post 2 -->
             <?php 
               $count=0;
-              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
-              foreach($result_link as $r)
-              {
-                $link = $r->option_value;
-              }            
-              $link_file = $link."/wp-content/uploads/";
               $argspublicacion = array( 'post_type' => 'publicacions',  'showposts' => 4,  'offset' => 4);  
  
               $publicacions = new WP_Query($argspublicacion);   

@@ -1,3 +1,4 @@
+<?php $withcomments = 1 ?>
 <?php  get_header(); ?>
 <!-- ***********************SECTION BANNER*************************** -->
 <?php  get_template_part('sections/banner'); ?>

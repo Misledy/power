@@ -68,7 +68,7 @@
                     <div>
                       <ul class="nav navbar-nav ">
                         <li class="custom-coach buttom-gradient-red">
-                          <a href="entrenadores.html" class="">ENTRENADOR PERSONALIZADO</a>
+                          <a href="<?php echo get_home_url() ?>/entrenadores" class="">ENTRENADOR PERSONALIZADO</a>
                         </li>
                       </ul>
                     </div>

@@ -3,12 +3,15 @@
 function powerbuildingoficial_styles(){
     wp_enqueue_style('normalize', get_stylesheet_directory_uri() . '/css/normalize.css' );
     wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/css/style.css' );
-    wp_enqueue_style('bootstrap', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" );
+  //  wp_enqueue_style('bootstrap', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" );
+         wp_enqueue_style('bootstrap', get_stylesheet_directory_uri() . '/css/bootstrap.min.css');
     wp_enqueue_style( 'barlow', "https://fonts.googleapis.com/css?family=Barlow+Condensed:400,700|Barlow:400,500,700&display=swap" );
     wp_enqueue_style('style', get_stylesheet_uri() );
 
     wp_enqueue_script('jquery');
-    wp_enqueue_script('bootstrapjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array('jquery'), '3.3.7', true );
+   // wp_enqueue_script('bootstrapjs', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", array('jquery'), '3.3.7', true );
+         wp_enqueue_script( 'bootstrapjs', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '3.3.7', true );
+    wp_enqueue_script('jquerymin', "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", array('jquery'), '3.3.7', true );
     wp_enqueue_script( 'mainjs', get_template_directory_uri() . '/js/main.js', array(), '3.3.7', true );
     wp_enqueue_script( 'ajax', get_template_directory_uri() . '/js/ajax-login-script.js' );
 }
@@ -377,4 +380,16 @@ function error_message($error){
 	$error_msg .= '<h1>' . $error . '</h1>' ;
 	$error_msg .= '</div>';
 	return $error_msg;
+}
+
+/***********LINK ****************/
+function link_upload(){
+	global $wpdb; 
+    $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
+    foreach($result_link as $r)
+    {
+      $link = $r->option_value;
+    }            
+    $link_file .= $link;
+    return $link_file;
 }

@@ -14,10 +14,10 @@ global $wpdb;
             $fecha_votacion = $r->option_value;
     }  
    $fecha_votacion= "$fecha_votacion 11:59 PM";
-
    if ($activar_votacion == 'Si') { 
    
-?>
+?>   
+
 <section id="hero">
         <div
           id="carousel"
@@ -108,7 +108,12 @@ global $wpdb;
                 <!-- Post 1 -->
             <?php 
               $count=0;
-              $link_file = link_upload()."/wp-content/uploads/";
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."options WHERE option_name = 'siteurl'"); 
+              foreach($result_link as $r)
+              {
+                $link = $r->option_value;
+              }            
+              $link_file = $link."/wp-content/uploads/";
               $argspublicacion = array( 'post_type' => 'publicacions',  'showposts' => 4,  );  
  
               $publicacions = new WP_Query($argspublicacion);   
@@ -229,23 +234,22 @@ global $wpdb;
             </div>
     </div>
 
-</section>
- <?php } ?>
+</section> 
+<?php } ?>
  <?php if ($activar_votacion == '') { ?>
 
-<META HTTP-EQUIV="REFRESH" CONTENT="5;URL=http://www.desarrolloweb.com">
-            <section class="error-404 not-found text-center " id="voting" style="margin-bottom: 200px">
+<section id="voting">
+
+    <div class="container">
+            <div class="title-section text-center">
                 <header class="page-header">
-                    <h1 class="page-title"><?php _e( 'Esa página no se puede encontrar.', 'apk' ); ?></h1>
+                    <h2 class="page-title"><?php _e( 'No hay votaciones a mostrar.', 'apk' ); ?></h2>
+                    <h2 style="height: 100px"></h2>
                 </header><!-- .page-header -->
-                <div class="page-content">
-                    <p><?php _e( 'Parece que no se encontró nada en esta ubicación. Tal vez intente una búsqueda?', 'apk' ); ?>fdsfsdfsdfsdffdsfdf</p>
+            </div><!-- .page-content -->
+</section><!-- .error-404 -->
 
-
-                </div><!-- .page-content -->
-            </section><!-- .error-404 -->
-->
- <?php   } ?>         
+ <?php   } ?>          
 <!--****************************** Cronómetro ******************************-->
 
 <script>
@@ -264,10 +268,10 @@ var end = new Date('<?php echo $fecha_votacion; ?>');
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById('days').innerHTML = 'EXPIRED!';
-            document.getElementById('hours').innerHTML = 'EXPIRED!';
-            document.getElementById('minutes').innerHTML = 'EXPIRED!';
-            document.getElementById('seconds').innerHTML = 'EXPIRED!';
+            document.getElementById('days').innerHTML = '0';
+            document.getElementById('hours').innerHTML = '0';
+            document.getElementById('minutes').innerHTML = '0';
+            document.getElementById('seconds').innerHTML = '0';
 
             return;
         }

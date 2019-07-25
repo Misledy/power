@@ -160,11 +160,12 @@
 
           <div class="col-md-9 col-sm-9">
             <div class="profile-content-section">
-              <h4 class="profile-content-title">ASESORAMIENTO PERSONALIZADO</h4>
+              <h4 class="profile-content-title">ASESORAMIENTO PERSONALIZADO<?php echo $id_p;?></h4>
 
               <div class="shop-content">
                 <div class="row">
-                <?php $args = array( 'post_type' => 'product' ); ?>
+
+                <?php $args = array( 'post_type' => 'product', 'meta_key' => 'entrenador', 'meta_value' => $id_p ); ?>
                 <?php $loop = new WP_Query( $args ); ?>
 
                 <?php while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>                 

@@ -1242,6 +1242,9 @@ border-radius: 25px;
     text-align: center;
     font-weight: 700;
 }
+.wp_ulike_likers_wrapper {
+    display: none !important;
+}
 .footer-post-item{
   display: flow-root;
 }
